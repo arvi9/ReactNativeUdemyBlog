@@ -1,9 +1,11 @@
-import React, { Children } from "react";
+import React from "react";
 
 const BlogContext = React.createContext();
 
-export const BlogProvider = (childern) => {
-  return <BlogContext.Provider value={5}>{childern}</BlogContext.Provider>;
+export const BlogProvider = ({ children }) => {
+  return (
+    <BlogContext.Provider value={[1, 2, 3]}>{children}</BlogContext.Provider>
+  );
 };
 
 export default BlogContext;
