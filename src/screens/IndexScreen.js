@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, Button } from "react-native";
 import { Context } from "../context/BlogContext";
 
 const IndexScreen = () => {
-  const { state, addBlogPost } = useContext(BlogContext);
+  const { state, addBlogPost } = useContext(Context);
 
   //Note:  renderItem={({ item }) - This is destructuring object.
   return (

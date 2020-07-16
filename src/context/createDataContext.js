@@ -4,7 +4,7 @@ import React, { useReducer } from "react";
 export default (reducer, actions, initialState) => {
   const Context = React.createContext();
 
-  const Provider = ({ childern }) => {
+  const Provider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     //bound to copy of dispatch
@@ -14,9 +14,9 @@ export default (reducer, actions, initialState) => {
     }
 
     return (
-      <BlogContext.Provider value={{ state, ...boundActions }}>
+      <Context.Provider value={{ state, ...boundActions }}>
         {children}
-      </BlogContext.Provider>
+      </Context.Provider>
     );
   };
   return { Context, Provider };

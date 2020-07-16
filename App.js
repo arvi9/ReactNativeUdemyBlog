@@ -5,9 +5,11 @@ import IndexScreen from "./src/screens/IndexScreen";
 import { Provider } from "./src/context/BlogContext";
 
 const navigator = createStackNavigator(
-  { Index: IndexScreen },
   {
-    initialRoutName: "Index",
+    Index: IndexScreen,
+  },
+  {
+    initialRouteName: "Index",
     defaultNavigationOptions: {
       title: "Blogs",
     },
@@ -16,7 +18,6 @@ const navigator = createStackNavigator(
 
 const App = createAppContainer(navigator);
 
-//This is React
 export default () => {
   return (
     <Provider>
