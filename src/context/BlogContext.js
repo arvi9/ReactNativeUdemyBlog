@@ -9,7 +9,8 @@ const blogReducer = (state, action) => {
         ...state,
         {
           id: Math.floor(Math.random() * 9999),
-          title: `Blog Post #${state.length + 1}`,
+          title: action.payload.title,
+          content: action.payload.content,
         },
       ];
     default:
@@ -18,8 +19,13 @@ const blogReducer = (state, action) => {
 };
 
 const addBlogPost = (dispatch) => {
-  return () => {
-    dispatch({ type: "add_blogpost" });
+  //After Dispatich only CallBack
+  return async (title, content, callback) => {
+    dispatch({
+      type: "add_blogpost",
+      payload: { title: title, content: content },
+    });
+    callback();
   };
 };
 
@@ -32,5 +38,5 @@ const deleteBlogPost = (dispatch) => {
 export const { Context, Provider } = createDataContext(
   blogReducer,
   { addBlogPost, deleteBlogPost },
-  []
+  [{ title: "TEST POST", content: "TEST CONTENT", id: 1 }]
 );
