@@ -5,12 +5,19 @@ import BlogPostForm from "../components/BlogPostForm";
 
 //navigation is received from ShowScreen
 const EditScreen = ({ navigation }) => {
-  const { state } = useContext(Context);
-  const blogPost = state.find(
-    (blogPost) => blogPost.id === navigation.getParam("id")
-  );
+  const id = navigation.getParam("id");
+  const { state, editBlogPost } = useContext(Context);
 
-  return <BlogPostForm />;
+  const blogPost = state.find((blogPost) => blogPost.id === id);
+
+  return (
+    <BlogPostForm
+      initialValues={{ title: blogPost.title, content: blogPost.content }}
+      onSubmit={(title, content) => {
+        editBlogPost(id, title, content, () => navigation.pop());
+      }}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
