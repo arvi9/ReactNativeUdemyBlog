@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet } from "react-native";
 import { Context } from "../context/BlogContext";
-import { TextInput } from "react-native-gesture-handler";
+import BlogPostForm from "../components/BlogPostForm";
 
 //navigation is received from ShowScreen
 const EditScreen = ({ navigation }) => {
@@ -10,19 +10,7 @@ const EditScreen = ({ navigation }) => {
     (blogPost) => blogPost.id === navigation.getParam("id")
   );
 
-  const [title, setTitle] = useState(blogPost.title);
-  const [content, setContent] = useState(blogPost.content);
-
-  return (
-    <View>
-      <Text style={styles.label}>Edit Title: {navigation.getParam("id")}</Text>
-      <TextInput
-        value={title}
-        onChangeText={(newTitle) => setTitle(newTitle)}
-        style={styles.input}
-      />
-    </View>
-  );
+  return <BlogPostForm />;
 };
 
 const styles = StyleSheet.create({
