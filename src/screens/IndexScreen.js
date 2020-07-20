@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,7 +12,21 @@ import { Feather } from "@expo/vector-icons";
 
 const IndexScreen = ({ navigation }) => {
   //console.log(props);
-  const { state, deleteBlogPost } = useContext(Context);
+  const { state, deleteBlogPost, getBlogPosts } = useContext(Context);
+
+  //By using the useEffect() --> getBlogPosts is invoked onetime.
+  useEffect(() => {
+    getBlogPosts();
+    //any time the IndexScreen Gains Focus the this callback function will be executed
+    const listener = navigation.addListener("didFocus", () => {
+      getBlogPosts();
+    });
+
+    //After we stop showing IndexSceen we have to cleanup the listener. This will prevent meamory leaks.
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   //Note:  renderItem={({ item }) - This is destructuring object.
   return (
